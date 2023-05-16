@@ -8,7 +8,7 @@
 ![issues](https://img.shields.io/github/issues/marcusfrdk/localhost-seo)
 ![contributors](https://img.shields.io/github/contributors/marcusfrdk/localhost-seo)
 
-A small tool for debugging and visualizing meta tags for a website or webapp hosted on localhost (or online).
+A tool for debugging and visualizing static tags for a website or webapp hosted locally or online.
 
 ## Requirements
 
