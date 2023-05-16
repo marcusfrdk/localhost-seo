@@ -2,6 +2,12 @@
 
 # Localhost SEO
 
+![top language](https://img.shields.io/github/languages/top/marcusfrdk/localhost-seo)
+![code size](https://img.shields.io/github/languages/code-size/marcusfrdk/localhost-seo)
+![last commit](https://img.shields.io/github/last-commit/marcusfrdk/localhost-seo)
+![issues](https://img.shields.io/github/issues/marcusfrdk/localhost-seo)
+![contributors](https://img.shields.io/github/contributors/marcusfrdk/localhost-seo)
+
 A small tool for debugging and visualizing meta tags for a website or webapp hosted on localhost (or online).
 
 ## Requirements
