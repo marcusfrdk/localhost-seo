@@ -51,8 +51,21 @@ async function start() {
     let url = req.query.url;
     if (!url) return res.status(400).json({ error: "Missing url" });
     if (!url.match(/^https?/g)) url = "http://" + url;
-    if (url.includes("localhost") && url.startsWith("https"))
+    if (url.includes("localhost") && url.startsWith("https")) {
       url = url.replace("https", "http");
+    }
+
+    // Replace localhost with host.docker.internal
+    // Due do Docker's networking, calling localhost from
+    // inside a container. The host.docker.internal hostname
+    // resolves to the internal IP address used by the host.
+    if (
+      process.env.NODE_ENV === "docker" &&
+      url.startsWith("http://localhost")
+    ) {
+      url = url.replace("http://localhost", "http://host.docker.internal");
+    }
+
     url = new URL(url);
 
     // Get data

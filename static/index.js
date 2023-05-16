@@ -19,6 +19,8 @@ function enableInput() {
   input.disabled = false;
 }
 
+function replaceLocalhost(value) {}
+
 function getDefaultUrl() {
   const stored = localStorage.getItem("url");
   if (stored) return stored;
@@ -81,6 +83,7 @@ async function getUrl(u) {
     return;
   }
 
+  data.url = data.url.replace("host.docker.internal", "localhost");
   localStorage.setItem("url", data.url);
 
   if (data.url.includes("localhost")) {

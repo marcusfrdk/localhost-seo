@@ -4,4 +4,4 @@ COPY package*.json ./
 RUN npm install
 COPY . .
 EXPOSE 8053
-CMD ["npm", "run", "start"]
+CMD ["npm", "run", "docker"]
