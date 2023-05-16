@@ -84,13 +84,15 @@ async function getUrl(u) {
   }
 
   data.url = data.url.replace("host.docker.internal", "localhost");
+  data.visualUrl = data.url;
   localStorage.setItem("url", data.url);
 
   if (data.url.includes("localhost")) {
-    data.url = data.url.replace("localhost", REPLACE_LOCALHOST);
+    data.visualUrl = data.url.replace("localhost", REPLACE_LOCALHOST);
     if (data.url.startsWith("https"))
       data.url = data.url.replace("https", "http");
-    if (data.url.includes(":")) data.url = data.url.replace(/:\d+/, "");
+    if (data.url.includes(":"))
+      data.visualUrl = data.visualUrl.replace(/:\d+/, "");
   }
 
   if (!data.title) {
@@ -99,7 +101,7 @@ async function getUrl(u) {
 
   updateLinks(data.url);
   updateElements(document.getElementsByClassName("desc"), data.description);
-  updateUrls(document.getElementsByClassName("url"), data.url);
+  updateUrls(document.getElementsByClassName("url"), data.visualUrl);
   updateImages(document.getElementsByClassName("cover"), data.cover);
   updateElements(
     document.getElementsByClassName("title"),
