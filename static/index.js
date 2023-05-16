@@ -109,6 +109,7 @@ async function main() {
   url = getDefaultUrl();
   await getUrl(url);
   input = document.getElementsByTagName("input").item(0);
+  input.value = cleanUrl(url);
   form = document.getElementsByTagName("form").item(0);
   button = document.getElementsByTagName("button").item(0);
   button.addEventListener("click", handleClick);

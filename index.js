@@ -1,20 +1,45 @@
 const express = require("express");
-const helpers = require("./helpers");
+const { parse } = require("node-html-parser");
 
-const isDev = process.env.NODE_ENV === "development";
 const app = express();
-const port = isDev ? 3000 : process.env.PORT || 80;
+const port = process.env.PORT || 3000;
 
 app.disable("x-powered-by");
 app.use(express.json());
 
+function getTitle(root) {
+  const title = root.querySelector("title");
+  if (!title) return "";
+  return title.text || "";
+}
+
+function getDescription(root) {
+  const meta = root.querySelector("meta[name='description']");
+  if (!meta || !meta.hasAttribute("content")) return "";
+  return meta.getAttribute("content");
+}
+
+async function getCover(root, baseUrl) {
+  const meta = root.querySelector("meta[property='og:image']");
+  if (!meta || !meta.hasAttribute("content")) return "";
+  let url = meta.getAttribute("content");
+  if (url.startsWith("/")) url = baseUrl + url;
+
+  // Check if image exists
+  const res = await fetch(url);
+  if (!res.ok) return "";
+
+  return url;
+}
+
+async function getHtml(url) {
+  const response = await fetch(url);
+  const html = await response.text();
+  const root = parse(html);
+  return root;
+}
+
 async function start() {
-  // Message
-  const envMsg = `Environment: ${process.env.NODE_ENV?.toUpperCase()}`;
-
-  console.log(envMsg);
-  console.log("-".repeat(envMsg.length));
-
   // Routes
   app.use("/", express.static("static"));
   app.post("/getPage", async (req, res) => {
@@ -27,10 +52,10 @@ async function start() {
     url = new URL(url);
 
     // Get data
-    const root = await helpers.getHtml(url.href);
-    const title = helpers.getTitle(root);
-    const description = helpers.getDescription(root);
-    const cover = await helpers.getCover(root, url.href);
+    const root = await getHtml(url.href);
+    const title = getTitle(root);
+    const description = getDescription(root);
+    const cover = await getCover(root, url.href);
 
     res.json({ url: url.href, cover, title, description });
   });

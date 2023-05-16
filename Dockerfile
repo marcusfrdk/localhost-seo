@@ -1,8 +1,7 @@
-FROM nginx
-WORKDIR /usr/share/nginx
-COPY ./nginx.conf ./
-COPY ./*.html ./html/
-COPY ./*.css ./html/
-COPY ./*.js ./html/
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+FROM node:lts-alpine
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+EXPOSE 3000
+CMD ["npm", "run", "start"]

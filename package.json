@@ -4,8 +4,8 @@
   "description": "A small tool for debugging and visualizing meta tags for a website or webapp hosted on localhost (or online).",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=production node index.js",
-    "dev": "NODE_ENV=development nodemon index.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -28,8 +28,7 @@
     "ext": "js,html,css",
     "watch": [
       "static",
-      "index.js",
-      "helpers.js"
+      "index.js"
     ]
   }
 }
