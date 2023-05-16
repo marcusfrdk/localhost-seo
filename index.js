@@ -27,6 +27,7 @@ async function getCover(root, baseUrl) {
   const meta = root.querySelector("meta[property='og:image']");
   if (!meta || !meta.hasAttribute("content")) return "";
   let url = meta.getAttribute("content");
+  baseUrl = baseUrl.replace("host.docker.internal", "localhost");
   if (url.startsWith("/")) url = removeTrailingSlash(baseUrl) + url;
 
   // Check if image exists
