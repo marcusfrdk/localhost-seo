@@ -1,6 +1,7 @@
 const express = require("express");
 const { parse } = require("node-html-parser");
 
+const isDocker = process.env.NODE_ENV === "docker";
 const app = express();
 const port = process.env.PORT || 8053;
 
@@ -27,12 +28,15 @@ async function getCover(root, baseUrl) {
   const meta = root.querySelector("meta[property='og:image']");
   if (!meta || !meta.hasAttribute("content")) return "";
   let url = meta.getAttribute("content");
-  baseUrl = baseUrl.replace("host.docker.internal", "localhost");
   if (url.startsWith("/")) url = removeTrailingSlash(baseUrl) + url;
 
   // Check if image exists
   const res = await fetch(url);
   if (!res.ok) return "";
+
+  if (isDocker) {
+    url = url.replace("host.docker.internal", "localhost");
+  }
 
   return url;
 }
