@@ -101,10 +101,6 @@ async function handleClick(e) {
   enableInput();
 }
 
-function unload() {
-  document.body.classList.remove("loading");
-}
-
 async function main() {
   url = getDefaultUrl();
   await getUrl(url);
@@ -113,7 +109,7 @@ async function main() {
   form = document.getElementsByTagName("form").item(0);
   button = document.getElementsByTagName("button").item(0);
   button.addEventListener("click", handleClick);
-  unload();
+  document.body.classList.remove("loading");
 }
 
 function cleanup() {
