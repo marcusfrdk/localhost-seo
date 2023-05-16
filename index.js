@@ -19,11 +19,15 @@ function getDescription(root) {
   return meta.getAttribute("content");
 }
 
+function removeTrailingSlash(value) {
+  return value.replace(/\/$/, "");
+}
+
 async function getCover(root, baseUrl) {
   const meta = root.querySelector("meta[property='og:image']");
   if (!meta || !meta.hasAttribute("content")) return "";
   let url = meta.getAttribute("content");
-  if (url.startsWith("/")) url = baseUrl + url;
+  if (url.startsWith("/")) url = removeTrailingSlash(baseUrl) + url;
 
   // Check if image exists
   const res = await fetch(url);
