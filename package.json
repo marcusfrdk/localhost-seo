@@ -1,0 +1,35 @@
+{
+  "name": "localhost-seo",
+  "version": "1.0.0",
+  "description": "A small tool for debugging and visualizing meta tags for a website or webapp hosted on localhost (or online).",
+  "main": "index.js",
+  "scripts": {
+    "start": "NODE_ENV=production node index.js",
+    "dev": "NODE_ENV=development nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcusfrdk/localhost-seo.git"
+  },
+  "author": "Marcus Fredriksson <marcus@marcusfredriksson.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marcusfrdk/localhost-seo/issues"
+  },
+  "homepage": "https://github.com/marcusfrdk/localhost-seo#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "node-html-parser": "^6.1.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  },
+  "nodemonConfig": {
+    "ext": "js,html,css",
+    "watch": [
+      "static",
+      "index.js",
+      "helpers.js"
+    ]
+  }
+}

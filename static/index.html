@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Localhost SEO</title>
+    <meta
+      name="description"
+      content="A small tool for debugging and visualizing meta tags for a website or webapp hosted on localhost (or online)."
+    />
+    <link rel="icon" href="favicon.ico" sizes="any" />
+    <link rel="stylesheet" href="index.css" />
+    <script type="text/javascript" src="index.js"></script>
+  </head>
+  <body class="loading">
+    <header>
+      <form>
+        <input type="url" id="url" placeholder="Enter URL" autocomplete="off" />
+        <button>Get</button>
+      </form>
+    </header>
+
+    <section id="google">
+      <p class="label">Google</p>
+      <div>
+        <a class="title" href="" target="_blank" rel="nooppener">Title</a>
+        <p class="url">Url</p>
+        <p class="desc">Description</p>
+      </div>
+    </section>
+    <section id="twitter">
+      <p class="label">Twitter</p>
+      <a class="card" href="" target="_blank" rel="nooppener">
+        <img class="cover" src="" alt="" />
+        <div class="content">
+          <p class="title">Title</p>
+          <p class="desc">Description</p>
+          <p class="url stripped">Url</p>
+        </div>
+      </a>
+    </section>
+    <section id="facebook">
+      <p class="label">Facebook</p>
+      <a class="card" href="" target="_blank" rel="nooppener">
+        <img class="cover" src="" alt="" />
+        <div class="content">
+          <p class="url stripped">Url</p>
+          <p class="title">Title</p>
+          <p class="desc">Description</p>
+        </div>
+      </a>
+    </section>
+  </body>
+</html>

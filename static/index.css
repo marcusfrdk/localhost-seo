@@ -1,0 +1,246 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  color: var(--strong);
+}
+
+:root {
+  --background: #ffffff;
+  --bottom: #f3f3f3;
+  --middle: #eaeaea;
+  --top: #dfdfdf;
+  --strong: #1c1c1c;
+  --weak: #555555;
+  --muted: #777777;
+
+  --primary-dark: #0091fa;
+  --primary: #45b1ff;
+  --primary-light: #94d2ff;
+  --primary-text: #eff8ff;
+  --secondary-dark: #16bb94;
+  --secondary: #36e8bd;
+  --secondary-light: #7bf0d3;
+  --secondary-text: #eff8ff;
+
+  --google-link: #1a0dab;
+  --google-url: #006621;
+
+  --max-width: calc(100% - 2rem);
+
+  background-color: var(--background);
+}
+
+@media screen and (prefers-color-scheme: dark) {
+  :root {
+    --background: #1c1c1c;
+    --bottom: #2c2c2c;
+    --middle: #3c3c3c;
+    --top: #4c4c4c;
+    --strong: #ffffff;
+    --weak: #bfbfbf;
+    --muted: #999999;
+
+    --google-link: #6272ff;
+    --google-url: #0cc045;
+  }
+}
+
+body {
+  width: 31.5rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+body.loading p:not(.label),
+body.loading a {
+  color: var(--bottom) !important;
+  background-color: var(--bottom);
+  border-radius: 99rem;
+}
+
+header {
+  height: 4rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+
+form {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+input {
+  /* border: none; */
+  /* background-color: var(--bottom); */
+  background: none;
+  border: 0.125rem solid var(--bottom);
+  height: 2.5rem;
+  width: 100%;
+  border-radius: 0.5rem;
+  padding: 0 0.75rem;
+  font-size: 0.875rem;
+}
+
+*:focus-visible {
+  outline: 0.125rem solid var(--primary);
+}
+
+input:disabled {
+  color: var(--muted);
+  cursor: default;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  height: 2.5rem;
+  padding: 0 1rem;
+  font-size: 0.875rem;
+  font-weight: bold;
+  background-color: var(--primary);
+  border: none;
+  border-radius: 0.5rem;
+  margin-left: 0.5rem;
+  cursor: pointer;
+  color: var(--primary-text);
+}
+
+button:disabled {
+  background-color: var(--bottom);
+  color: var(--weak);
+  cursor: default;
+}
+
+section {
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+section > p.label {
+  font-size: 0.875rem;
+  font-weight: bold;
+  color: var(--weak);
+  margin-bottom: 1rem;
+}
+
+p.desc {
+  color: var(--weak);
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+}
+
+/* GOOGLE */
+section#google > div > a {
+  color: var(--google-link);
+  text-decoration: none;
+  font-size: 1.125rem;
+}
+section#google > div > p.url {
+  color: var(--google-url);
+  margin-top: 0.125rem;
+  font-size: 0.875rem;
+}
+
+/* TWITTER */
+section#twitter > a {
+  background-color: var(--background);
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  border: 0.125rem solid var(--bottom);
+}
+
+section#twitter > a > img {
+  width: 100%;
+  height: 15.75rem;
+  background-color: var(--bottom);
+  outline: none;
+  border: none;
+  object-fit: cover;
+}
+
+section#twitter > a > div.content {
+  padding: 0.75rem;
+  width: 100%;
+  border-top: 0.125rem solid var(--bottom);
+}
+
+section#twitter > a > div.content > p.title {
+  font-weight: bold;
+  font-size: 0.875rem;
+}
+
+section#twitter > a > div.content > p.url {
+  margin-top: 0.25rem;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+/* FACEBOOK */
+section#facebook > a {
+  background-color: var(--bottom);
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  border: 0.125rem solid var(--middle);
+}
+
+section#facebook > a > img {
+  width: 100%;
+  height: 16.3125rem;
+  background-color: var(--bottom);
+  outline: none;
+  border: none;
+  object-fit: cover;
+}
+
+section#facebook > a > div.content {
+  padding: 0.75rem;
+}
+
+section#facebook > a > div.content > p.url {
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-bottom: 0.25rem;
+}
+
+section#facebook > a > div.content > p.title {
+  font-weight: bold;
+}
+
+/* MEDIA QUERIES */
+@media screen and (max-width: 64rem) {
+  input {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (hover: hover) {
+  button:hover:not(:disabled) {
+    background-color: var(--primary-dark);
+  }
+
+  section#google > div > a:hover {
+    text-decoration: underline;
+  }
+
+  section#twitter > a:hover {
+    background-color: var(--bottom);
+  }
+
+  section#facebook > a:hover {
+    background-color: var(--middle);
+  }
+}
