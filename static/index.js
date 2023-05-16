@@ -119,8 +119,8 @@ async function main() {
   form = document.getElementsByTagName("form").item(0);
   button = document.getElementsByTagName("button").item(0);
   button.addEventListener("click", handleClick);
-  document.body.classList.remove("loading");
   await getUrl(url);
+  document.body.classList.remove("loading");
 }
 
 function cleanup() {
