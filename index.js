@@ -33,10 +33,14 @@ async function getCover(root, baseUrl) {
 }
 
 async function getHtml(url) {
-  const response = await fetch(url);
-  const html = await response.text();
-  const root = parse(html);
-  return root;
+  try {
+    const response = await fetch(url);
+    const html = await response.text();
+    const root = parse(html);
+    return root;
+  } catch (err) {
+    return null;
+  }
 }
 
 async function start() {
@@ -53,6 +57,8 @@ async function start() {
 
     // Get data
     const root = await getHtml(url.href);
+    if (!root)
+      return res.status(403).json({ error: "Failed to fetch resource" });
     const title = getTitle(root);
     const description = getDescription(root);
     const cover = await getCover(root, url.href);

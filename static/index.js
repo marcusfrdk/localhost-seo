@@ -65,11 +65,22 @@ function updateLinks(url) {
   }
 }
 
+function setError() {
+  input.classList.add("error");
+  setTimeout(() => {
+    input.classList.remove("error");
+  }, 3000);
+}
+
 async function getUrl(u) {
   const response = await fetch(`/getPage?url=${u}`, { method: "POST" });
   const data = await response.json();
 
-  if (!data) return;
+  if (!response.ok) {
+    setError();
+    return;
+  }
+
   localStorage.setItem("url", data.url);
 
   if (data.url.includes("localhost")) {
@@ -103,13 +114,13 @@ async function handleClick(e) {
 
 async function main() {
   url = getDefaultUrl();
-  await getUrl(url);
   input = document.getElementsByTagName("input").item(0);
   input.value = cleanUrl(url);
   form = document.getElementsByTagName("form").item(0);
   button = document.getElementsByTagName("button").item(0);
   button.addEventListener("click", handleClick);
   document.body.classList.remove("loading");
+  await getUrl(url);
 }
 
 function cleanup() {
