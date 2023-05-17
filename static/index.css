@@ -140,6 +140,14 @@ p.desc {
   color: var(--weak);
   margin-top: 0.25rem;
   font-size: 0.875rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+section#facebook > a > div.content > p.desc {
+  -webkit-line-clamp: 1;
 }
 
 /* GOOGLE */
