@@ -20,24 +20,18 @@ function getDescription(root) {
   return meta.getAttribute("content");
 }
 
-function removeTrailingSlash(value) {
-  return value.replace(/\/$/, "");
-}
-
 async function getCover(root, baseUrl) {
   const meta = root.querySelector("meta[property='og:image']");
   if (!meta || !meta.hasAttribute("content")) return "";
   let url = meta.getAttribute("content");
-  if (url.startsWith("/")) url = removeTrailingSlash(baseUrl) + url;
+  baseUrl = new URL(baseUrl);
 
-  // Check if image exists
+  if (url.startsWith("/")) url = baseUrl.origin + url;
+
   const res = await fetch(url);
   if (!res.ok) return "";
 
-  if (isDocker) {
-    url = url.replace("host.docker.internal", "localhost");
-  }
-
+  if (isDocker) url = url.replace("host.docker.internal", "localhost");
   return url;
 }
 

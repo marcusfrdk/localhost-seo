@@ -19,7 +19,7 @@ _This method requires [Docker](https://docs.docker.com/get-docker/) to be instal
 After installing docker, run the following command to start using the app:
 
 ```bash
-docker run -d -p 8053:8053 --name localhost-seo marcusfrdk/localhost-seo:0.0.9
+docker run -d -p 8053:8053 --name localhost-seo marcusfrdk/localhost-seo:0.0.10
 ```
 
 This will download the Docker container and run it in the background on [localhost:8053](http://localhost:8053).
